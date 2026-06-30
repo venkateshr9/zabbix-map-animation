@@ -1,0 +1,9 @@
+@keyframes packetMove {
+	from { stroke-dashoffset: 0; }
+	to { stroke-dashoffset: -300; }
+}
+
+@keyframes linkPulse {
+	0%, 100% { opacity: var(--linkflow-pulse-min, 0.25); }
+	50%      { opacity: 1; }
+}

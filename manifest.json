@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2.0,
+    "id": "technousher_map_animation",
+    "name": "Network Map Link Animation",
+    "namespace": "MapAnimation",
+    "version": "1.0.0",
+    "author": "Venkatesh Ramalingam",
+    "description": "Injects CSS/JS onto the native Zabbix Monitoring -> Maps page to animate data flow on map links.",
+    "url": "https://github.com/venkateshr9/zabbix-map-animation",
+    "type": "module",
+    "actions": {
+        "mapanimation.settings": {
+            "class": "SettingsView",
+            "view": "mapanimation.settings.view"
+        }
+    },
+    "config": {}
+}

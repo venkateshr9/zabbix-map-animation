@@ -1,0 +1,14 @@
+{
+    "enabled": true,
+    "refresh_interval_ms": 2000,
+    "animation_duration_s": 1.5,
+    "packet_dash": "8 500",
+    "packet_stroke_width": 4,
+    "base_dash": "2 10",
+    "base_stroke_width": 3,
+    "glow_enabled": true,
+    "exclude_color_enabled": true,
+    "exclude_r_min": 150,
+    "exclude_g_max": 80,
+    "exclude_b_max": 80
+}

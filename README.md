@@ -1,28 +1,52 @@
-# Zabbix Map Animation
+<div align="center">
 
-Animates data flow on links in the native Zabbix **Monitoring -> Maps**
+# 🌐 Zabbix Map Animation
+
+**Animated data-flow links for native Zabbix network maps**
+
+[![Zabbix](https://img.shields.io/badge/Zabbix-7.4-D40000?style=flat-square&logo=zabbix&logoColor=white)](https://www.zabbix.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=flat-square&logo=php&logoColor=white)](https://php.net)
+[![Platform](https://img.shields.io/badge/Platform-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)](#requirements)
+
+</div>
+
+---
+
+Animates data flow on links in the native Zabbix **Monitoring → Maps**
 page — moving "packet" dashes, multiple staggered packets, or a pulsing
 glow — fully configurable from a GUI settings page inside Zabbix itself.
 No core files are modified; this is a standard Zabbix frontend module.
 
-Tested on **Zabbix 7.4**, Apache + PHP-FPM, RHEL/CentOS Stream with
-SELinux enforcing.
+> Tested on **Zabbix 7.4**, Apache + PHP-FPM, RHEL/CentOS Stream with
+> SELinux enforcing.
 
-## Features
+## ✨ Features
 
-- Three animation styles: single moving packet, multiple staggered
-  packets, or a pulsing fade (no movement, lighter on rendering).
-- Configurable speed, direction, stroke widths, dash patterns, and glow.
-- Color-based exclusion (e.g. skip animating red "down/critical" links).
-- All settings editable from **Monitoring -> Map Animation Settings**
-  inside Zabbix - no file editing needed after initial install.
-- Settings persist in a small JSON file (`assets/config.json`), since
-  Zabbix modules cannot create their own database tables.
+| | |
+|---|---|
+| 🎞️ **3 animation styles** | Single packet, multiple staggered packets, or pulsing fade |
+| ⚙️ **Fully configurable** | Speed, direction, stroke widths, dash patterns, glow — all from the GUI |
+| 🎨 **Color-aware** | Skip animating red "down/critical" links automatically |
+| 🖱️ **Zero file editing** | Configure everything from Monitoring → Map Animation Settings |
+| 🧩 **Native integration** | Standard Zabbix module — survives upgrades, no core file changes |
 
-## Screenshots
 
-*(add a screenshot or short GIF of the animated map here before publishing -
-this is the single highest-impact thing for a GitHub README)*
+## 📸 Screenshots
+
+![Zabbix animated network map](screenshots/zabbix-map-animation.png)
+
+<!--
+  To replace/add more screenshots: drop image files into the screenshots/
+  folder, commit them, and reference with:
+  ![alt text](screenshots/your-filename.png)
+
+  Or drag-and-drop directly into the GitHub README editor (pencil icon on
+  the repo page) - it auto-hosts the image and inserts the correct markdown
+  for you, which looks like:
+  ![alt text](https://github.com/user-attachments/assets/some-id)
+-->
+
 
 ## Requirements
 
@@ -52,13 +76,13 @@ issues (dropped subfolders, broken brace expansion, wrong encoding) can
 silently corrupt the module structure that way.
 ```bash
 cd /usr/share/zabbix/ui/modules/
-git clone https://github.com/venkateshr9/zabbix-map-animation.git technousher_map_animation
+git clone https://github.com/venkateshr9/zabbix-map-animation.git zabbix_map_animation
 ```
 
 **3. Set correct ownership and SELinux context for the whole module:**
 ```bash
-chown -R apache:apache /usr/share/zabbix/ui/modules/technousher_map_animation
-restorecon -Rv /usr/share/zabbix/ui/modules/technousher_map_animation
+chown -R apache:apache /usr/share/zabbix/ui/modules/zabbix_map_animation
+restorecon -Rv /usr/share/zabbix/ui/modules/zabbix_map_animation
 ```
 (replace `apache` with whatever user your PHP-FPM pool actually runs as -
 check with `grep "^user" /etc/php-fpm.d/www.conf`)
@@ -67,12 +91,12 @@ check with `grep "^user" /etc/php-fpm.d/www.conf`)
 level and, separately, at the SELinux level (regular file permissions
 alone are not sufficient under SELinux enforcing mode):
 ```bash
-chmod 664 /usr/share/zabbix/ui/modules/technousher_map_animation/assets/config.json
+chmod 664 /usr/share/zabbix/ui/modules/zabbix_map_animation/assets/config.json
 
-chcon -t httpd_sys_rw_content_t /usr/share/zabbix/ui/modules/technousher_map_animation/assets/config.json
+chcon -t httpd_sys_rw_content_t /usr/share/zabbix/ui/modules/zabbix_map_animation/assets/config.json
 semanage fcontext -a -t httpd_sys_rw_content_t \
-  "/usr/share/zabbix/ui/modules/technousher_map_animation/assets/config.json"
-restorecon -v /usr/share/zabbix/ui/modules/technousher_map_animation/assets/config.json
+  "/usr/share/zabbix/ui/modules/zabbix_map_animation/assets/config.json"
+restorecon -v /usr/share/zabbix/ui/modules/zabbix_map_animation/assets/config.json
 ```
 If `semanage` isn't installed: `yum install -y policycoreutils-python-utils`
 then re-run the two lines above. The `semanage fcontext -a` step is what
@@ -97,7 +121,7 @@ field on that page has inline help text explaining what it does.
 ## File structure
 
 ```
-technousher_map_animation/
+zabbix_map_animation/
   manifest.json                          module metadata + registered actions
   Module.php                              menu registration + page-injection hook
   actions/
@@ -145,8 +169,20 @@ a loading problem).
 
 ## License
 
-MIT - see LICENSE.
+MIT - see [LICENSE](LICENSE).
 
 ## Author
 
-Venkatesh Ramalingam
+**Venkatesh Ramalingam**
+[GitHub](https://github.com/venkateshr9)
+
+---
+
+<div align="center">
+
+Built as an independent, community module — not affiliated with or
+endorsed by Zabbix SIA. "Zabbix" is a registered trademark of Zabbix SIA.
+
+[![Zabbix](https://img.shields.io/badge/Built%20for-Zabbix-D40000?style=flat-square&logo=zabbix&logoColor=white)](https://www.zabbix.com)
+
+</div>
